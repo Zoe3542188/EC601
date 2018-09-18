@@ -5,10 +5,10 @@ import re
 import os
 import shutil
 #Twitter API credentials
-consumer_key = "kkCOy8p0VI0rjxFgyJsrY8itx"
-consumer_secret = "SnsDRCrZjr8Vaq7rHCMUbyaCEeim9wtWF8CfYHblhTdnICnCwl"
-access_key = "1038144157137739776-rRyI2oJ4pRYkDA5FbkNR1yhTtV0OB1"
-access_secret = "HxLzKsQkXEBOZwieqD28FIZ5TFLlg7WvkisReO1OhAgXi"
+consumer_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+consumer_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+access_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+access_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 def get_all_tweets(screen_name):
     #authorize twitter, initialize tweepy
@@ -83,8 +83,8 @@ def convert_to_video(screen_name):
         os.chmod('./Output/Video/'+screen_name+'.mp4', 0o777)
         os.remove('./Output/Video/'+screen_name+'.mp4')
     #os.system("ffmpeg -f image2 -r 3 -i Output/"+screen_name+"/img%03d.jpg -vf scale=800:400 Output/Video/"+screen_name+".mp4")
-    os.system("ffmpeg -f image2 -i Output/"+screen_name+"/img%03d.jpg -vf scale=800:400 -vf setpts=2.0*PTS -vcodec libx264 Output/Video/"+screen_name+".mp4")
-
+    #os.system("ffmpeg -f image2 -i Output/"+screen_name+"/img%03d.jpg -vf scale=800:400 -vf setpts=2.0*PTS -vcodec libx264 Output/Video/"+screen_name+".mp4")
+    os.system("ffmpeg -f image2 -i Output/"+screen_name+"/img%03d.jpg -vf setpts=2.0*PTS -vcodec libx264 Output/Video/"+screen_name+".mp4")
 
 if __name__ == '__main__':
     while(1):
