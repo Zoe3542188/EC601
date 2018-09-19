@@ -1,19 +1,21 @@
-import tweepy #https://github.com/tweepy/tweepy
-import json
-import urllib.request
 import re
 import os
-import shutil
 import io
-from google.cloud import videointelligence
+import glob
+import shutil
+import tweepy #https://github.com/tweepy/tweepy
 import numpy as np
+import urllib.request
 import matplotlib.pyplot as plt
 from matplotlib import cm
+from google.cloud import vision
+from google.cloud import videointelligence
+from google.cloud.vision import types
 #Twitter API credentials
-consumer_key = "43oZ5m4MvO4XMXVFZc6Z2Tj2L"
-consumer_secret = "aIiM2oMVmHfli1c2hUin6n8O9chPJTvaUbbTU8PEZTSTqstIHg"
-access_key = "1038144157137739776-CSkIzLbsSjxFhqxR180ZdzzhNxU63L"
-access_secret = "Pr1lfQvOR2hwYPxrmtIqIuXHhzYv4qORdljCYn7phjrHi"
+#consumer_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#consumer_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#access_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#access_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 def get_all_tweets(screen_name):
     #authorize twitter, initialize tweepy
@@ -92,7 +94,9 @@ def convert_to_video(screen_name):
     os.system("ffmpeg -f image2 -i Output/"+screen_name+"/img%03d.jpg -vf setpts=4.0*PTS -vcodec libx264 Output/Video/"+'v'+screen_name+".mp4")
 
 
-def analyze_labels_file(path):
+def analyze_video(screen_name):
+    path='./Output/Video/'+'v'+screen_name+'.mp4'
+    print("path="+path)
     label=[]
     confidencial=[]
     # [START video_analyze_labels]
@@ -110,11 +114,6 @@ def analyze_labels_file(path):
     shot_labels = result.annotation_results[0].shot_label_annotations
     for i, shot_label in enumerate(shot_labels):
         label.append(shot_label.entity.description)
-        print('Shot label description: {}'.format(
-            shot_label.entity.description))
-        for category_entity in shot_label.category_entities:
-            print('\tLabel category description: {}'.format(
-                category_entity.description))
         for i, shot in enumerate(shot_label.segments):
             start_time = (shot.segment.start_time_offset.seconds +
                           shot.segment.start_time_offset.nanos / 1e9)
@@ -124,11 +123,8 @@ def analyze_labels_file(path):
             confidence = shot.confidence
             value=float(confidence)
             confidencial.append(value)
-            print('\tSegment {}: {}'.format(i, positions))
-            print('\tConfidence: {}'.format(confidence))
-        print('\n')
-    # [END video_analyze_labels]
     print(confidencial)
+    print(label)
     idx=np.arange(len(confidencial))
     color=cm.jet(np.array(confidencial)/max(confidencial))
     plt.barh(idx,confidencial,color=color)
@@ -136,7 +132,30 @@ def analyze_labels_file(path):
     plt.grid(axis='confidence')
     plt.show()
 
+def analyze_images(screen_name):
+    client = vision.ImageAnnotatorClient()
+    # The name of the image file to annotate
+    WSI_MASK_PATH="./Output/"+screen_name+"/"
+    wsi_mask_paths = glob.glob(os.path.join(WSI_MASK_PATH, '*.jpg'))
+    wsi_mask_paths.sort()
+    for image in wsi_mask_paths:
+        file_name = os.path.join(
+            os.path.dirname(__file__),
+            image)
+    # Loads the image into memory
+        with io.open(file_name, 'rb') as image_file:
+            content = image_file.read()
+        image = types.Image(content=content)
+        # Performs label detection on the image file
+        response = client.label_detection(image=image)
+        labels = response.label_annotations
+        print('Labels for'+file_name+':')
+        for label in labels:
+            print(label.description)
+
+
 if __name__ == '__main__':
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] ='your credential path'
     while(1):
         screen_name=input('Please input a twitter account (example:@realDonaldTrump)')
         #pass in the username of the account you want to download
@@ -148,12 +167,14 @@ if __name__ == '__main__':
             Flag=input("Do u want to see the output video?(y/n)")
             if (Flag=="y"):
                 os.system('cd Output/Video && "'+'v'+screen_name+'.mp4')
-                analyze_labels_file('./Output/Video/'+'v'+screen_name+'.mp4')
+                analyze_video(screen_name)
+                analyze_images(screen_name)
                 break
             elif(Flag!="n"):
                 print("please input 'y' or 'n'")
             else:
-                analyze_labels_file('./Output/Video/'+'v'+screen_name+'.mp4')
+                analyze_video(screen_name)
+                analyze_images(screen_name)
                 break
         break
             #os.system("'"+screen_name+".mp4")
