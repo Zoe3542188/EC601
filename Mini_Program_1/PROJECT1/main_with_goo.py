@@ -11,6 +11,7 @@ from matplotlib import cm
 from google.cloud import vision
 from google.cloud import videointelligence
 from google.cloud.vision import types
+
 #Twitter API credentials
 #consumer_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 #consumer_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
@@ -44,6 +45,7 @@ def get_all_tweets(screen_name):
 
 
 def get_image_urls(screen_name):
+    #get image urls from alltweets
     tweets=get_all_tweets(screen_name)
     media_files = set()
     for status in tweets:
@@ -51,17 +53,19 @@ def get_image_urls(screen_name):
             media = status.extended_entities.get('media',[])
             if(len(media) > 0):
                 for item in media:
-        #            media_files.add(media[0]['media_url'])
+        #           media_files.add(media[0]['media_url'])
                     media_files.add(item['media_url'])
         #    print(media_files)
         except:
             media=status.entities.get('media',[])
             if(len(media)>0):
                 media_files.add(media[0]['media_url'])
+                #put image urls to set media_files
     return(media_files)
 
 
 def download_images(screen_name):
+    #Download images from urls
     #get image urls
     url_list=get_image_urls(screen_name)
     #creat a new folder
@@ -81,10 +85,12 @@ def download_images(screen_name):
         #if(len(identity)<=2):
             #identity=str(re.findall(r"img/([^.]+)\.jpg",url))
         image_name="img"+str(identity)
+        #download images
         urllib.request.urlretrieve(url,'./Output/'+screen_name+'/'+image_name+'.jpg')
 
 
 def convert_to_video(screen_name):
+    #convert downloaded images to video with FFMPEG and os.system
     video=os.path.exists('./Output/Video/'+'v'+screen_name+'.mp4')
     if video:
         os.chmod('./Output/Video/'+'v'+screen_name+'.mp4', 0o777)
@@ -95,12 +101,11 @@ def convert_to_video(screen_name):
 
 
 def analyze_video(screen_name):
+    #analyze video contents with google video intelligence api 
     path='./Output/Video/'+'v'+screen_name+'.mp4'
     print("path="+path)
     label=[]
     confidencial=[]
-    # [START video_analyze_labels]
-    """Detect labels given a file path."""
     video_client = videointelligence.VideoIntelligenceServiceClient()
     features = [videointelligence.enums.Feature.LABEL_DETECTION]
     with io.open(path, 'rb') as movie:
@@ -120,11 +125,13 @@ def analyze_video(screen_name):
             end_time = (shot.segment.end_time_offset.seconds +
                         shot.segment.end_time_offset.nanos / 1e9)
             positions = '{}s to {}s'.format(start_time, end_time)
+            position.append(positions)
             confidence = shot.confidence
+            print('\tSegment {}: {}'.format(i, positions))
+            print('\tConfidence: {}'.format(confidence))
             value=float(confidence)
             confidencial.append(value)
-    print(confidencial)
-    print(label)
+    #plot the confidencial bar with matplotlib
     idx=np.arange(len(confidencial))
     color=cm.jet(np.array(confidencial)/max(confidencial))
     plt.barh(idx,confidencial,color=color)
@@ -133,11 +140,13 @@ def analyze_video(screen_name):
     plt.show()
 
 def analyze_images(screen_name):
+    #analyze images with Google Vision API
     client = vision.ImageAnnotatorClient()
     # The name of the image file to annotate
     WSI_MASK_PATH="./Output/"+screen_name+"/"
     wsi_mask_paths = glob.glob(os.path.join(WSI_MASK_PATH, '*.jpg'))
     wsi_mask_paths.sort()
+    #load downloaded images from local file
     for image in wsi_mask_paths:
         file_name = os.path.join(
             os.path.dirname(__file__),
@@ -155,6 +164,8 @@ def analyze_images(screen_name):
 
 
 if __name__ == '__main__':
+    #Set google application credentials
+    #Please replace "your credential path" with path or your .json file
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] ='your credential path'
     while(1):
         screen_name=input('Please input a twitter account (example:@realDonaldTrump)')
@@ -178,3 +189,4 @@ if __name__ == '__main__':
                 break
         break
             #os.system("'"+screen_name+".mp4")
+#ffmpeg -i output5.mp4 -vf "drawtext=text='lihuibin':fontfile=/usr/share/fonts/truetype/ttf-indic-fonts-core/utkal.ttf:fontsize=24:fontcolor=red@0.8:x=w-tw-20:y=h-th-20" -c:v libx264 -c:a copy output8.mp4
