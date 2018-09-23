@@ -8,6 +8,6 @@ Mini_Project_1
 - How To Use
 ****
 ## Twitter API
-  -Using tweety.py example and return all tweets
+  -Using tweety.py example and return all tweets </br>
   -Then get media_urls and download images via request from those urls.
   
