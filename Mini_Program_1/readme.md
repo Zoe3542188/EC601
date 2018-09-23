@@ -26,6 +26,7 @@ Mini_Project_1
 ### <h3 id="video">Google_Video_Intelligence API</h3>
 #### [main_with_goo.py](https://github.com/Zoe3542188/EC601/blob/master/Mini_Program_1/PROJECT1/main_with_goo.py)
   - Analyze video contents and return the shot labels and label confidence degree.
+  - Draw bar chart of labels and confidence degrees with Matplot.
 ****
 ### <h3 id="use">How_To_Use</h3>
 >Twitter API and Google APIs need your credentials to enable the functions.
