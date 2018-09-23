@@ -2,13 +2,13 @@ Mini_Project_1
 ========
 ****
 ## Contents
-- [Twitter API](#twitter)
+- [Twitter API](#1)
 - [FFMPEG](#ffmpeg)
 - [Google Cloud Vision API](#vision)
 - [Google Video Intelligence API](#video)
 - [How to use](#use)
 ****
-### <span id="twitter">Twitter_API</span>
+### <span id="1">Twitter_API</span>
 #### [download_images.py](https://github.com/Zoe3542188/EC601/blob/master/Mini_Program_1/PROJECT1/download_images.py)
   - Using [tweety.py](https://github.com/tweepy/tweepy) example and return all tweets </br>
   - Then get media_urls and download images via request from those urls.</br>
