@@ -2,8 +2,12 @@ Mini_Project_1
 ========
 ****
 ## Contents
-- Twitter Api
-- FFMPEG
-- Google Cloud Vision Api
-- Google Video Intelligence Api
+- Used APIs Intro
+- File Details
+- Output Display
+- How To Use
 ****
+## Twitter API
+  -Using tweety.py example and return all tweets
+  -Then get media_urls and download images via request from those urls.
+  
