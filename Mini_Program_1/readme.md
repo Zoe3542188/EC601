@@ -22,14 +22,18 @@ Mini_Project_1
 ****  
 ### Google Cloud Vision API
 #### [tryvision.py](https://github.com/Zoe3542188/EC601/blob/master/Mini_Program_1/PROJECT1/tryvision.py)
-  - 
-  - 
+  - Analyze image contents and return the labels. 
 ****  
 ### Google Video Intelligence API
 #### [main_with_goo.py](https://github.com/Zoe3542188/EC601/blob/master/Mini_Program_1/PROJECT1/main_with_goo.py)
+  - Analyze video contents and return the shot labels and label confidence degree.
 ****
 ### How To Use
 >>Twitter API and Google APIs need your credentials to enable the functions.
->>- For twitter, you need to apply for a twitter developer account 
-
-
+>>- [Installation Twitter API](https://github.com/tweepy/tweepy/blob/master/README.md)</br>
+>>> Please plug your own App keys into the python file.</br>
+>>- [Installation Google APIs](https://cloud.google.com/video-intelligence/docs/libraries#client-libraries-install-python)</br>
+>>> Please plug your Google App credentials into the python file.</br>
+****
+#### You can check some outputs [here](https://github.com/Zoe3542188/EC601/tree/master/Mini_Program_1/PROJECT1/Output)
+****
