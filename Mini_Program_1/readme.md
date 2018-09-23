@@ -8,7 +8,6 @@ Mini_Project_1
 - Google Video Intelligence API
 - How to use
 ****
-## Used APIs Intro
 ### Twitter API
 #### [download_images.py](https://github.com/Zoe3542188/EC601/blob/master/Mini_Program_1/PROJECT1/download_images.py)
   - Using [tweety.py](https://github.com/tweepy/tweepy) example and return all tweets </br>
@@ -30,9 +29,9 @@ Mini_Project_1
 ****
 ### How To Use
 >Twitter API and Google APIs need your credentials to enable the functions.
->- [Installation Twitter API](https://github.com/tweepy/tweepy/blob/master/README.md)</br>
+>- [Installation of Twitter API](https://github.com/tweepy/tweepy/blob/master/README.md)</br>
 >> Please plug your own App keys into the python file.</br>
->- [Installation Google APIs](https://cloud.google.com/video-intelligence/docs/libraries#client-libraries-install-python)</br>
+>- [Installation of Google APIs](https://cloud.google.com/video-intelligence/docs/libraries#client-libraries-install-python)</br>
 >> Please plug your Google App credentials into the python file.</br>
 ****
 #### You can check some outputs [here](https://github.com/Zoe3542188/EC601/tree/master/Mini_Program_1/PROJECT1/Output)
