@@ -8,12 +8,12 @@ Mini_Project_1
 - [Google Video Intelligence API](#video)
 - [How to use](#use)
 ****
-### <h3 id="1">Twitter_API</h3></br>
+### <h3 id="1">Twitter_API</h3>
 #### [download_images.py](https://github.com/Zoe3542188/EC601/blob/master/Mini_Program_1/PROJECT1/download_images.py)
   - Using [tweety.py](https://github.com/tweepy/tweepy) example and return all tweets </br>
   - Then get media_urls and download images via request from those urls.</br>
 ****
-### <span id="ffmpeg">FFMPEG</span>
+### <h3 id="ffmpeg">FFMPEG</h3>
 #### [main.py](https://github.com/Zoe3542188/EC601/blob/master/Mini_Program_1/PROJECT1/main.py)
   - Convert Images to Video with FFMPEG command.</br>
   - Run CMD command with os.system().</br>
