@@ -41,6 +41,7 @@ def get_image_urls(screen_name):
     for status in tweets:
         try:
             media = status.extended_entities.get('media',[])
+            #check if this tweet has more than one image
             if(len(media) > 0):
                 for item in media:
         #            media_files.add(media[0]['media_url'])
