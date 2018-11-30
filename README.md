@@ -28,5 +28,3 @@
 - get statistic data from database(the most popular description and img nums for each feed)</br>
 ![imgnums](https://raw.githubusercontent.com/Zoe3542188/EC601/screenshots/statistic1.PNG)</br>
 ![popular](https://raw.githubusercontent.com/Zoe3542188/EC601/screenshots/statistic2.PNG)
-
-## [MongoDB](https://github.com/Zoe3542188/EC601/tree/Mini_Project_3/MongoDB)
