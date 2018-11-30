@@ -1,4 +1,4 @@
-## [MySQL](https://github.com/Zoe3542188/EC601/tree/Mini_Project_3/MySQL)
+## MySQL
 #### Using [pymysql](https://github.com/PyMySQL/PyMySQL) to build connection between Python and MySQL
 #### My database structure:
 ![database](https://raw.githubusercontent.com/Zoe3542188/EC601/screenshots/DBstructure.PNG)
@@ -17,12 +17,12 @@
 - label_name: description
 
 #### Result:
-### [FeedsToMysql.py](https://github.com/Zoe3542188/EC601/tree/Mini_Project_3/MySQL/FeedsToMysql.py)
+### [feeds_to_mysql.py]()
 - Dwonloads images and load info to database
-### [search.py](https://github.com/Zoe3542188/EC601/tree/Mini_Project_3/MySQL/search.py)
+### [search.py]()
 - input the label name and get info from the database</br>
 ![result](https://raw.githubusercontent.com/Zoe3542188/EC601/screenshots/search.PNG)
-### [statistic.py](https://github.com/Zoe3542188/EC601/tree/Mini_Project_3/MySQL/statistic.py)
+### [statistic.py]()
 - get statistic data from database(the most popular description and img nums for each feed)</br>
 ![imgnums](https://raw.githubusercontent.com/Zoe3542188/EC601/screenshots/statistic1.PNG)</br>
 ![popular](https://raw.githubusercontent.com/Zoe3542188/EC601/screenshots/statistic2.PNG)
