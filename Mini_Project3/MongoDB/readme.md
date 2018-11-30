@@ -17,7 +17,7 @@
 
 ### [search.py]()
 - input the label name and get info from the database</br>
-![result](https://raw.githubusercontent.com/Zoe3542188/EC601/screenshots/searchMongo.PNG)
+![result](https://raw.githubusercontent.com/Zoe3542188/EC601/screenshots/SearchMongo.PNG)
 
 ### [statistic.py]()
 - get statistic data from database(the most popular description and img nums for each feed)</br>
