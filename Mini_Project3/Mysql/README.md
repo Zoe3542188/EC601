@@ -1,5 +1,6 @@
-## MySQL
+## [MySQL](https://github.com/Zoe3542188/EC601/tree/Mini_Project_3/MySQL)
 #### Using [pymysql](https://github.com/PyMySQL/PyMySQL) to build connection between Python and MySQL
+#### Using [Navicat for mysql](https://www.navicat.com/en/products/navicat-for-mysql) to visualize the database
 #### My database structure:
 ![database](https://raw.githubusercontent.com/Zoe3542188/EC601/screenshots/DBstructure.PNG)
 ### Two tables: </br>
@@ -19,9 +20,11 @@
 #### Result:
 ### [feeds_to_mysql.py]()
 - Dwonloads images and load info to database
+
 ### [search.py]()
 - input the label name and get info from the database</br>
 ![result](https://raw.githubusercontent.com/Zoe3542188/EC601/screenshots/search.PNG)
+
 ### [statistic.py]()
 - get statistic data from database(the most popular description and img nums for each feed)</br>
 ![imgnums](https://raw.githubusercontent.com/Zoe3542188/EC601/screenshots/statistic1.PNG)</br>

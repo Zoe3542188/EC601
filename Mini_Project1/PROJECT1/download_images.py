@@ -5,10 +5,7 @@ import re
 import os
 import shutil
 #Twitter API credentials
-consumer_key = "5tGJLwXLKcDX4dpfpvZQMOIKu"
-consumer_secret = "RmR5htpm9zj9bc9LAPDdasOwxjFHsGwEkaMRFtse7wmdIcUK6i"
-access_key = "1038144157137739776-Szhfxax48zippGIqGWpLknCwUi3203 "
-access_secret = "YwP9J4f1QNpXV0N6HwaGk1O5u36obUNhboHhNbn3KN3Bd"
+
 
 def get_all_tweets(screen_name):
     #authorize twitter, initialize tweepy
